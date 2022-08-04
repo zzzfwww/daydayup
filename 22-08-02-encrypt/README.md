@@ -1,10 +1,22 @@
-[TOC]
------
+<!-- vscode-markdown-toc -->
+* 1. [0. 摘要](#)
+* 2. [1. 关于加密解密](#-1)
+* 3. [2. AES](#AES)
+* 4. [3. DES](#DES)
+* 5. [4. RSA](#RSA)
+* 6. [6. MD5](#MD5)
+* 7. [7. SHA](#SHA)
 
-## 0. 摘要
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+# 加解密
+##  1. <a name=''></a>0. 摘要
 在项目开发过程中,当操作一些用户的隐私信息,诸如密码,帐户密钥等数据时,往往需要加密后可以在网上传输.这时,需要一些高效地,简单易用的加密算法加密数据,然后把加密后的数据存入数据库或进行其他操作;当需要读取数据时,把加密后的数据取出来,再通过算法解密.
 
-## 1. 关于加密解密
+##  2. <a name='-1'></a>1. 关于加密解密
 当前我们项目中常用的加解密的方式无非三种.
 
 对称加密, 加解密都使用的是同一个密钥, 其中的代表就是AES,DES
@@ -13,7 +25,7 @@
 1.1. Base64不是加密算法
 它是一种数据编码方式,虽然是可逆的,但是它的编码方式是公开的,无所谓加密.本文也对Base64编码方式做了简要介绍.
 
-## 2. AES
+##  3. <a name='AES'></a>2. AES
 AES,即高级加密标准（Advanced Encryption Standard）,是一个对称分组密码算法,旨在取代DES成为广泛使用的标准.AES中常见的有三种解决方案,分别为AES-128,AES-192和AES-256. AES加密过程涉及到4种操作：字节替代（SubBytes）,行移位（ShiftRows）,列混淆（MixColumns）和轮密钥加（AddRoundKey）.解密过程分别为对应的逆操作.由于每一步操作都是可逆的,按照相反的顺序进行解密即可恢复明文.加解密中每轮的密钥分别由初始密钥扩展得到.算法中16字节的明文,密文和轮密钥都以一个4x4的矩阵表示. AES 有五种加密模式：电码本模式（Electronic Codebook Book (ECB)）,密码分组链接模式（Cipher Block Chaining (CBC)）,计算器模式（Counter (CTR)）,密码反馈模式（Cipher FeedBack (CFB)）和输出反馈模式（Output FeedBack (OFB)）
 
 ```golang
@@ -102,7 +114,7 @@ func PKCS7UnPadding(origData []byte) []byte {
 }
 ```
 
-## 3. DES
+##  4. <a name='DES'></a>3. DES
 DES是一种对称加密算法,又称为美国数据加密标准.DES加密时以64位分组对数据进行加密,加密和解密都使用的是同一个长度为64位的密钥,实际上只用到了其中的56位,密钥中的第8,16…64位用来作奇偶校验.DES有ECB（电子密码本）和CBC（加密块）等加密模式. DES算法的安全性很高,目前除了穷举搜索破解外, 尚无更好的的办法来破解.其密钥长度越长,破解难度就越大. 填充和去填充函数.
 ```golang
 func ZeroPadding(ciphertext []byte, blockSize int) []byte {
@@ -186,7 +198,7 @@ func main() {
 //Output:
 //Encrypted: 5d2333b9fbbe5892379e6bcc25ffd1f3a51b6ffe4dc7af62beb28e1270d5daa1
 //Decrypted: I love this beautiful world!
-## 4. RSA
+##  5. <a name='RSA'></a>4. RSA
 首先使用openssl生成公私钥,使用RSA的时候需要提供公钥和私钥 , 可以通过openss来生成对应的pem格式的公钥和私钥匙
 
 ```golang
@@ -270,7 +282,7 @@ func main() {
     origData, _ := RsaDecrypt(data)
     fmt.Println(string(origData))
 } 
-5. 使用golang标准库ecdsa生成非对称(ES256,ES384,ES521)加密密钥对
+## 5. 使用golang标准库ecdsa生成非对称(ES256,ES384,ES521)加密密钥对
 import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
@@ -314,7 +326,7 @@ import (
 }
 ```
 
-## 6. MD5
+##  6. <a name='MD5'></a>6. MD5
 MD5的全称是Message-DigestAlgorithm 5,它可以把一个任意长度的字节数组转换成一个定长的整数,并且这种转换是不可逆的.对于任意长度的数据,转换后的MD5值长度是固定的,而且MD5的转换操作很容易,只要原数据有一点点改动,转换后结果就会有很大的差异.正是由于MD5算法的这些特性,它经常用于对于一段信息产生信息摘要,以防止其被篡改.其还广泛就于操作系统的登录过程中的安全验证,比如Unix操作系统的密码就是经过MD5加密后存储到文件系统中,当用户登录时输入密码后, 对用户输入的数据经过MD5加密后与原来存储的密文信息比对,如果相同说明密码正确,否则输入的密码就是错误的. MD5以512位为一个计算单位对数据进行分组,每一分组又被划分为16个32位的小组,经过一系列处理后,输出4个32位的小组,最后组成一个128位的哈希值.对处理的数据进行512求余得到N和一个余数,如果余数不为448,填充1和若干个0直到448位为止,最后再加上一个64位用来保存数据的长度,这样经过预处理后,数据变成（N+1）x 512位. 加密.Encode 函数用来加密数据,Check函数传入一个未加密的字符串和与加密后的数据,进行对比,如果正确就返回true.
 
 ```golang
@@ -358,7 +370,7 @@ func main() {
 }
 ```
 
-## 7. SHA
+##  7. <a name='SHA'></a>7. SHA
 SHA1
 ```golang
 package main
