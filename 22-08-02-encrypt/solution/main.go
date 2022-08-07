@@ -4,10 +4,11 @@ import (
 	"context"
 	"encoding/base64"
 	"log"
-	"solution/crypto"
-
 	"os"
 	"path"
+
+	"solution/crypto"
+
 	"solution/redis"
 )
 
@@ -34,6 +35,7 @@ func setFileToRedis() {
 	encrypt := crypto.AesEncrypt(base64Str, key)
 	rc.SetRedis(ctx, file, encrypt)
 }
+
 func getFileFromRedisAndSetToTempDir() {
 	split, file := path.Split(fileName)
 	println(split, file)
@@ -45,7 +47,7 @@ func getFileFromRedisAndSetToTempDir() {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	err = os.WriteFile(writeDirFile, decodeString, 0644)
+	err = os.WriteFile(writeDirFile, decodeString, 0o644)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}

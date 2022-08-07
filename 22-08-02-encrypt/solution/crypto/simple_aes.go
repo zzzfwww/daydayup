@@ -28,15 +28,14 @@ func AesEncrypt(orig string, key string) string {
 	cryted := make([]byte, len(origData))
 	// 加密
 	blockMode.CryptBlocks(cryted, origData)
-	//使用RawURLEncoding 不要使用StdEncoding
-	//不要使用StdEncoding  放在url参数中回导致错误
+	// 使用RawURLEncoding 不要使用StdEncoding
+	// 不要使用StdEncoding  放在url参数中回导致错误
 	return base64.RawURLEncoding.EncodeToString(cryted)
-
 }
 
 func AesDecrypt(cryted string, key string) string {
-	//使用RawURLEncoding 不要使用StdEncoding
-	//不要使用StdEncoding  放在url参数中回导致错误
+	// 使用RawURLEncoding 不要使用StdEncoding
+	// 不要使用StdEncoding  放在url参数中回导致错误
 	crytedByte, _ := base64.RawURLEncoding.DecodeString(cryted)
 	k := []byte(key)
 
@@ -58,14 +57,14 @@ func AesDecrypt(cryted string, key string) string {
 	return string(orig)
 }
 
-//补码
+// 补码
 func PKCS7Padding(ciphertext []byte, blocksize int) []byte {
 	padding := blocksize - len(ciphertext)%blocksize
 	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(ciphertext, padtext...)
 }
 
-//去码
+// 去码
 func PKCS7UnPadding1(origData []byte) []byte {
 	length := len(origData)
 	unpadding := int(origData[length-1])

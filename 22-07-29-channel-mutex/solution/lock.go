@@ -23,6 +23,7 @@ func (m *Mutex) Unlock() {
 		panic("unlock of unlock mutex")
 	}
 }
+
 func (m *Mutex) TryLock() bool {
 	select {
 	case <-m.ch:

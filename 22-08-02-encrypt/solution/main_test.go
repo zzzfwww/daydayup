@@ -10,6 +10,7 @@ import (
 func Test_SetRedis(t *testing.T) {
 	setFileToRedis()
 }
+
 func Test_GetRedis(t *testing.T) {
 	getFileFromRedisAndSetToTempDir()
 }

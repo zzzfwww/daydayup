@@ -13,7 +13,6 @@ func XorEncrypt(orig string, key byte) string {
 		crypto[ind] = origData[ind] ^ key
 	}
 	return base64.StdEncoding.EncodeToString(crypto)
-
 }
 
 func XorDecrypt(cryted string, key byte) string {

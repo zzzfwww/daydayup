@@ -3,6 +3,7 @@ package redis
 import (
 	"context"
 	"fmt"
+
 	"github.com/go-redis/redis/v8"
 )
 
@@ -19,7 +20,6 @@ func NewRedisClint() *Client {
 }
 
 func (c *Client) ExampleTest(ctx context.Context) {
-
 	err := c.Set(ctx, "key", "value", 0).Err()
 	if err != nil {
 		panic(err)
@@ -44,7 +44,6 @@ func (c *Client) ExampleTest(ctx context.Context) {
 }
 
 func (c *Client) SetRedis(ctx context.Context, key, value string) {
-
 	err := c.Set(ctx, key, value, 0).Err()
 	if err != nil {
 		panic(err)
@@ -52,7 +51,6 @@ func (c *Client) SetRedis(ctx context.Context, key, value string) {
 }
 
 func (c *Client) GetRedis(ctx context.Context, key string) string {
-
 	val, err := c.Get(ctx, key).Result()
 	if err != nil {
 		panic(err)
