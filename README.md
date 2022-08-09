@@ -1,3 +1,3 @@
 # daydayup
-## 学习代码列表
+- Record technology 
 
