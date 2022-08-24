@@ -1,3 +1,3 @@
 # daydayup
-- Record technology 
+- Write something do you want
 
