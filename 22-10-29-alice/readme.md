@@ -3,7 +3,10 @@
 ### alice chain
 [https://github.com/justinas/alice](https://github.com/justinas/alice)
 
-### core logic
+### alice库封装思想
+example.go属于最简版本封装，看不太明白的时候可以详细看下这个封装，相信就能了解alice的核心思想。
+
+### 核心逻辑
 ```go
 for i := range c.constructors {
     h = c.constructors[len(c.constructors)-1-i](h)
