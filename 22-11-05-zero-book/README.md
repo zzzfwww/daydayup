@@ -93,10 +93,7 @@ Auth:
 ```shell
 curl --location --request GET 'localhost:8889/search/do?name=name' \
 --header 'Content-Type: application/json' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njc2MTk4NTQsImlhdCI6MTY2NzYxODA1NCwidXNlcklkIjoxfQ.iqn5Cb8i6sPY_JpVEo683DL1vmxhRjBY4aPdSN9mt3c' \
---data-raw '{
-    "inputData":"sss"
-}'
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njc2MTk4NTQsImlhdCI6MTY2NzYxODA1NCwidXNlcklkIjoxfQ.iqn5Cb8i6sPY_JpVEo683DL1vmxhRjBY4aPdSN9mt3c'
 ```
 * 返回数据
 * jwt鉴权失败httpcode返回401
