@@ -1,0 +1,14 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+
+Mysql:
+  DataSource: root:yourpassword@tcp(localhost:3306)/gozero?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 127.0.0.1:6379
+    Pass:
+    Type: node
+
+Auth:
+  AccessSecret: 2hJx9ul9buoA73P
+  AccessExpire: 1800
