@@ -1,6 +1,7 @@
 Name: search-api
 Host: 0.0.0.0
 Port: 8889
+Verbose: true
 
 Auth:
   AccessSecret: 2hJx9ul9buoA73P

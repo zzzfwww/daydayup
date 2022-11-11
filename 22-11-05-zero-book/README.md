@@ -1,7 +1,40 @@
 # zero-book
 
 ## go-zero.dev官网错误点
+代码
+```go
+// findOneByNumber应该变为FindOneByName
+    userInfo, err := l.svcCtx.UserModel.FindOneByNumber(l.ctx, req.Username)
+    switch err {
+    case nil:
+    case model.ErrNotFound:
+        return nil, errors.New("用户名不存在")
+    default:
+        return nil, err
+    }
+    
+    if userInfo.Password != req.Password {
+        return nil, errors.New("用户密码不正确")
+    }
+```
+
 * model的sql文件应该修改
+
+* go-zero官网ddl文件如下
+```sql
+CREATE TABLE `user` (
+    `id` bigint NOT NULL AUTO_INCREMENT,
+    `number` varchar(255) NOT NULL DEFAULT '' COMMENT '学号',
+    `name` varchar(255)  NOT NULL DEFAULT '' COMMENT '用户名称',
+    `password` varchar(255)  NOT NULL DEFAULT '' COMMENT '用户密码',
+    `gender` char(5)  NOT NULL COMMENT '男｜女｜未公开',
+    `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+    `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `number_unique` (`number`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 ;
+```
+* 如果想要生成正确的model层代码则需要修改为如下：
 ```sql
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -23,22 +56,6 @@ VALUES(1, 'name', 'name', '男', '2022-11-05 11:01:56', '2022-11-05 11:01:56');
 
 * [https://go-zero.dev/cn/docs/advance/business-coding](https://go-zero.dev/cn/docs/advance/business-coding)
 
-代码
-```go
-// findOneByNumber应该变为FindOneByName
-    userInfo, err := l.svcCtx.UserModel.FindOneByNumber(l.ctx, req.Username)
-    switch err {
-    case nil:
-    case model.ErrNotFound:
-        return nil, errors.New("用户名不存在")
-    default:
-        return nil, err
-    }
-    
-    if userInfo.Password != req.Password {
-        return nil, errors.New("用户密码不正确")
-    }
-```
 ## 启动api服务
 * 配置文件添加和修改
 ```yaml
