@@ -2,7 +2,7 @@
 
 ### 测试go-zero bulk insert mysql
 
-单测文件运行[bulkinserter](./sqlx/bulkinserter_test.go)
+单测文件[bulkinserter](./sqlx/bulkinserter_test.go)
 
 运行函数 `TestBulkInserter`
 
