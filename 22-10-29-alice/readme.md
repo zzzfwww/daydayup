@@ -43,4 +43,4 @@ customizedHandler = chain.New(logger,timeout,ratelimit).Then(helloHandler)
 类似俄罗斯套娃，一层套一层，最核心函数的入参是http.Handler，出参也是http.Handler，函数式编程的思想。
 
 ### 结论
-站在巨人的肩膀上，来简化代码，此种喜悦发自于内心。
+* 用好工具，能让代码简化，并且提升编码能力
