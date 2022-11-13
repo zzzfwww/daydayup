@@ -109,14 +109,29 @@ Loading mirror speeds from cached hostfile
  * updates: mirrors.ustc.edu.cn
 ```
 
-1. 备份
+2. 备份
 
 ```shell
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 ```
 
-2. 下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/
+3. 下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/
 
 ```curl
 wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+```
+
+4. Epel 镜像
+
+- 备份(如有配置其他 epel 源)
+
+```shell
+mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup
+mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup
+```
+
+- 下载新 repo 到/etc/yum.repos.d/
+
+```curl
+wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
 ```
