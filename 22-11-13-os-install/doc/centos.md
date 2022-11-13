@@ -135,3 +135,19 @@ mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup
 ```curl
 wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
 ```
+
+5. 查看系统版本和内核版本
+
+```shell
+// 很早之前虚拟机上安装的centos7版本
+[root@localhost ~]# cat /etc/redhat-release
+CentOS Linux release 7.2.1511 (Core)
+[root@localhost ~]# cat /proc/version
+Linux version 3.10.0-327.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC) ) #1 SMP Thu Nov 19 22:10:57 UTC 2015
+
+// 阿里云镜像上下载的最新centos7版本
+[root@localhost ~]# cat /etc/redhat-release
+CentOS Linux release 7.9.2009 (Core)
+[root@localhost ~]# cat /proc/version
+Linux version 3.10.0-1160.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Oct 19 16:18:59 UTC 2020
+```
