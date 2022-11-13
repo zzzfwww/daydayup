@@ -35,4 +35,4 @@ CentOS-7-x86_64-Minimal-2009.torrent	38.6 KB	2020-11-06 22:44
 
 ## 完成安装
 
-- restart 就可以登录
+- reboot 就可以登录
