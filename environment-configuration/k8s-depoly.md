@@ -283,7 +283,7 @@ kube-flannel.yml
   188:9     error    wrong indentation: expected 10 but found 8  (indentation)
   190:9     error    wrong indentation: expected 10 but found 8  (indentation)
   192:1     error    syntax error: found character '\t' that cannot start any token (syntax)
-# 出错的地方在天剑的网卡信息，这里一定不能用tab键，直接四个空格完成配置，要不然会报错
+# 出错的地方在添加的网卡信息，这里一定不能用tab键，直接四个空格完成配置，要不然会报错
 
 # 再次执行，无报错，成功
 [root@k8s-master ~]# kubectl create -f kube-flannel.yml
