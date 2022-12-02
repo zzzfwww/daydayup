@@ -2,9 +2,6 @@
 
 1. 设置host
 ```bash
-172.21.51.67
-172.21.51.68
-172.21.51.69
 # 在192.168.3.8执行
 hostnamectl set-hostname k8s-master
 # 在192.168.3.7执行
@@ -71,6 +68,8 @@ sysctl -p /etc/sysctl.d/k8s.conf
 
 8. 配置k8s yum源 所有节点
 ```bash
+curl -o /etc/yum.repos.d/Centos-7.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+curl -o /etc/yum.repos.d/docker-ce.repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 cat > /etc/yum.repos.d/kubernetes.repo << EOF
 [kubernetes]
 name=kubernetes
@@ -87,7 +86,7 @@ yum clean all && yum makecache
 9. 安装docker
 ```bash
 # 制定版本安装
-[root@k8s-master ~]# yum install docker-ce-cli-18.09.9-3.el7 docker-ce-18.09.9-3.el7
+[root@k8s-master ~]# yum -y install docker-ce-cli-18.09.9-3.el7 docker-ce-18.09.9-3.el7
 
 ```
 
@@ -101,6 +100,7 @@ vi /etc/docker/daemon.json
     "https://8xpkSwnt.mirror.aliyuncs.com"
   ]
 }
+systemctl enable docker && systemctl start docker
 ```
 10. 安装kubeadm kubelet kubectl
 ```bash

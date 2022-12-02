@@ -89,11 +89,10 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMRuCm
 - 解决方案
 
 ```shell
-vi /etc/environment
-add these lines...
-
+cat <<EOF > /etc/environment
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
+EOF
 ```
 
 ### 配置 CentOS 镜像源
