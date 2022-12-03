@@ -100,8 +100,12 @@ vi /etc/docker/daemon.json
     "https://8xpkSwnt.mirror.aliyuncs.com"
   ]
 }
+```
+启动docker，并且开机启动
+```bash
 systemctl enable docker && systemctl start docker
 ```
+
 10. 安装kubeadm kubelet kubectl
 ```bash
 yum install -y kubelet-1.16.2 kubeadm-1.16.2 kubectl-1.16.2 --disableexcludes=kubernetes
