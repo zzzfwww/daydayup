@@ -220,6 +220,10 @@ Then you can join any number of worker nodes by running the following on each as
 
 kubeadm join 192.168.3.8:6443 --token abcdef.0123456789abcdef \
     --discovery-token-ca-cert-hash sha256:ba0f12e1c8b615b74b1127511f83839a865b5ad3ee48aa80645695176c32fffe
+
+# 第二次成功
+kubeadm join 192.168.3.8:6443 --token abcdef.0123456789abcdef \
+    --discovery-token-ca-cert-hash sha256:257a1046be724f4ce97b55102675379f64fd44f8f5cfae420135f624cae18531
 ```
 
 13. 查看信息
@@ -319,4 +323,12 @@ kube-proxy-59zqw                     1/1     Running             0          70m
 kube-proxy-b8ftz                     0/1     ContainerCreating   0          69m
 kube-proxy-px9l5                     1/1     Running             0          117m
 kube-scheduler-k8s-master            1/1     Running             0          116m
+```
+
+17. coreDNS一直启动不成功原因
+```bash
+# 删除指定的coredns pod
+kubectl delete pod coredns-58cc8c89f4-4zmg7 -n kube-system
+# 查看kubelet日志报错信息
+journalctl -xeu kubelet
 ```
