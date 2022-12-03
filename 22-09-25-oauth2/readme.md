@@ -19,3 +19,7 @@
      |        |<-(F)--- Protected Resource ---|               |
      +--------+                               +---------------+
 ```
+![OAuth](./oatuh2.png)
+
+## SSO
+![SSO](./sso.png)
