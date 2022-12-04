@@ -325,3 +325,41 @@ root@nginx:/# cd /etc/nginx/
 root@nginx:/etc/nginx# ls
 conf.d	fastcgi_params	mime.types  modules  nginx.conf  scgi_params  uwsgi_params
 ```
+7. k8s deployment创建和处理
+```bash
+# 创建test的namespace
+[root@k8smaster ~]# kubectl create namespace test
+namespace/test created
+```
+nginx-deployment yaml文件
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: test
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
+```bash
+# 启动deployment
+[root@k8smaster ~]# kubectl apply -f nginx-deployment.yml
+deployment.apps/nginx-deployment created
+```
+通过kuboard查看deployment状态
+![deploy](./resource/deployment-nginx.png)
