@@ -177,3 +177,151 @@ k8smaster   Ready    master   30m   v1.19.5   192.168.3.201   <none>        Cent
 k8sworker   Ready    <none>   18m   v1.19.5   192.168.3.202   <none>        CentOS Linux 7 (Core)   3.10.0-1127.el7.x86_64   docker://19.3.11
 ```
 
+# kubectl命令使用
+1. 获取k8s的命名空间
+```bash
+[root@k8smaster ~]# kubectl get ns
+NAME              STATUS   AGE
+default           Active   10h
+kube-node-lease   Active   10h
+kube-public       Active   10h
+kube-system       Active   10h
+kuboard           Active   10h
+```
+2. 获取所有pod的运行状态
+```bash
+[root@k8smaster ~]# kubectl get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS   AGE
+kube-system   calico-kube-controllers-6c89d944d5-mpmtb   1/1     Running   3          11h
+kube-system   calico-node-g7hnp                          1/1     Running   3          11h
+kube-system   calico-node-lkbjd                          1/1     Running   3          10h
+kube-system   coredns-59c898cd69-vwjmx                   1/1     Running   3          11h
+kube-system   coredns-59c898cd69-xsdzj                   1/1     Running   3          11h
+kube-system   etcd-k8smaster                             1/1     Running   3          11h
+kube-system   kube-apiserver-k8smaster                   1/1     Running   3          11h
+kube-system   kube-controller-manager-k8smaster          1/1     Running   3          11h
+kube-system   kube-proxy-7b2rn                           1/1     Running   3          10h
+kube-system   kube-proxy-wgk4d                           1/1     Running   3          11h
+kube-system   kube-scheduler-k8smaster                   1/1     Running   3          11h
+kuboard       kuboard-agent-2-cf648f7fd-8xv2c            1/1     Running   6          10h
+kuboard       kuboard-agent-7f4c97f888-gt7f7             1/1     Running   6          10h
+kuboard       kuboard-etcd-x5gqf                         1/1     Running   3          10h
+kuboard       kuboard-v3-79797c7b84-fflkj                1/1     Running   4          10h
+```
+3. 启动一个Nginx pod
+```bash
+[root@k8smaster ~]# kubectl run nginx --image=nginx:latest
+pod/nginx created
+```
+4. 查看指定pod的信息
+```bash
+[root@k8smaster ~]# kubectl describe pod nginx
+Name:         nginx
+Namespace:    default
+Priority:     0
+Node:         k8sworker/192.168.3.202
+Start Time:   Sat, 03 Dec 2022 19:22:08 -0500
+Labels:       run=nginx
+Annotations:  cni.projectcalico.org/podIP: 10.100.162.205/32
+              cni.projectcalico.org/podIPs: 10.100.162.205/32
+Status:       Running
+IP:           10.100.162.205
+IPs:
+  IP:  10.100.162.205
+Containers:
+  nginx:
+    Container ID:   docker://5a24f2064d00b98242c36ed2cc06865a7ce1cf7628f70ded20a328af2e67a459
+    Image:          nginx:latest
+    Image ID:       docker-pullable://nginx@sha256:e209ac2f37c70c1e0e9873a5f7231e91dcd83fdf1178d8ed36c2ec09974210ba
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 03 Dec 2022 19:22:24 -0500
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-jj5zv (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  default-token-jj5zv:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-jj5zv
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  48s   default-scheduler  Successfully assigned default/nginx to k8sworker
+  Normal  Pulling    47s   kubelet            Pulling image "nginx:latest"
+  Normal  Pulled     33s   kubelet            Successfully pulled image "nginx:latest" in 14.204438527s
+  Normal  Created    33s   kubelet            Created container nginx
+  Normal  Started    33s   kubelet            Started container nginx
+```
+5. 删除pod
+```bash
+kubectl get pod -n default
+
+kubectl delete pod nginx -n default
+```
+6. 验证pod是否成功
+```bash
+[root@k8smaster ~]# curl 10.100.162.205
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+[root@k8smaster ~]# kubectl logs -f nginx
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2022/12/04 00:22:24 [notice] 1#1: using the "epoll" event method
+2022/12/04 00:22:24 [notice] 1#1: nginx/1.23.2
+2022/12/04 00:22:24 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6)
+2022/12/04 00:22:24 [notice] 1#1: OS: Linux 3.10.0-1127.el7.x86_64
+2022/12/04 00:22:24 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/12/04 00:22:24 [notice] 1#1: start worker processes
+2022/12/04 00:22:24 [notice] 1#1: start worker process 28
+10.100.16.128 - - [04/Dec/2022:00:33:56 +0000] "GET / HTTP/1.1" 200 615 "-" "curl/7.29.0" "-"
+
+[root@k8smaster ~]# kubectl exec -it nginx -n default -- bash
+root@nginx:/# ls
+bin   dev		   docker-entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
+boot  docker-entrypoint.d  etc			 lib   media  opt  root  sbin  sys  usr
+root@nginx:/# cd /etc/nginx/
+root@nginx:/etc/nginx# ls
+conf.d	fastcgi_params	mime.types  modules  nginx.conf  scgi_params  uwsgi_params
+```
