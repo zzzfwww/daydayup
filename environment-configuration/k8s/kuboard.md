@@ -1,3 +1,12 @@
+<!-- vscode-markdown-toc -->
+* 1. [方法一：使用 hostPath 提供持久化](#hostPath)
+* 2. [访问 Kuboard](#Kuboard)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
 # 安装 Kuboard v3 - kubernetes
 
 在 K8S 中安装 Kuboard，主要考虑的问题是，如何提供 etcd 的持久化数据卷。建议的两个选项有：
@@ -6,7 +15,7 @@
 - 使用 StorageClass 动态创建 PV 为 etcd 提供数据卷；
 > 如果使用此方法安装 Kuboard 碰到问题，强烈建议您使用 docker run 或者 static-pod 的方式安装 kuboard .
 
-## 方法一：使用 hostPath 提供持久化
+##  1. <a name='hostPath'></a>方法一：使用 hostPath 提供持久化
 ```bash
 kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
 # 您也可以使用下面的指令，唯一的区别是，该指令使用华为云的镜像仓库替代 docker hub 分发 Kuboard 所需要的镜像
@@ -30,7 +39,7 @@ kuboard-etcd-x5gqf                1/1     Running   0          91s
 kuboard-v3-79797c7b84-fflkj       1/1     Running   0          91s
 ```
 
-## 访问 Kuboard
+##  2. <a name='Kuboard'></a>访问 Kuboard
 在浏览器中打开链接 http://192.168.3.201:30080
 
 输入初始用户名和密码，并登录

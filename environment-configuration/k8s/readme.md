@@ -142,7 +142,7 @@ kubeadm join apiserver.demo:6443 --token mpfjma.4vjjg8flqihor4vt     --discovery
 ```
 
 ## 初始化worker
-### 针对所有的 worker 节点执行
+## 针对所有的 worker 节点执行
 
 ```bash
 # 只在 worker 节点执行
