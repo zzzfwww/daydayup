@@ -61,3 +61,6 @@ https://plugins.jenkins.io/
 ![build](./jenkins/build.png)
 3. 配置构建完成之后的操作
 ![build-after](./jenkins/build-after.png)
+4. 参数化构建
+![parameter](./jenkins/git-parameter.png)
+![build-parameter](./jenkins/parameter-build.png)
