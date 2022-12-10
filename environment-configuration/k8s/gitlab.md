@@ -64,7 +64,7 @@ vim /etc/docker/daemon.json
 systemctl restart docker
 ```
 2. 编写docker-compose文件
-``yaml
+```yaml
 version: "3.1"
 services:
   gitlab:
