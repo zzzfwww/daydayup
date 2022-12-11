@@ -363,3 +363,33 @@ deployment.apps/nginx-deployment created
 ```
 通过kuboard查看deployment状态
 ![deploy](./resource/deployment-nginx.png)
+
+8. service创建和使用
+```bash
+[root@k8smaster ~]# kubectl expose deployment nginx-deployment --port=8888 --target-port=80 -n test
+service/nginx-deployment exposed
+[root@k8smaster ~]# kubectl get service -n test
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+nginx-deployment   ClusterIP   10.96.133.47   <none>        8888/TCP   9s
+[root@k8smaster ~]# curl 10.96.133.47:8888
+222
+[root@k8smaster ~]# curl 10.96.133.47:8888
+222
+[root@k8smaster ~]# curl 10.96.133.47:8888
+222
+[root@k8smaster ~]# curl 10.96.133.47:8888
+111
+[root@k8smaster ~]# curl 10.96.133.47:8888
+222
+[root@k8smaster ~]# curl 10.96.133.47:8888
+222
+# 先删除原来的service，再新建NodePort类型的service，这样就可以外部访问
+[root@k8smaster ~]# kubectl delete service nginx-deployment -n test
+[root@k8smaster ~]# kubectl expose deployment nginx-deployment --port=8888 --target-port=80 -n test --type=NodePort
+service/nginx-deployment exposed
+[root@k8smaster ~]# kubectl get service -n test
+NAME               TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+nginx-deployment   NodePort   10.96.157.70   <none>        8888:32312/TCP   7s
+
+http://192.168.3.201:32312/  访问当前地址，返回222说明跳转到Nginx服务的内部pod上
+```
