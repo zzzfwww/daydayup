@@ -115,14 +115,14 @@ http://192.168.3.102:9000/projects
 ```bash
 mvn sonar:sonar
 ```
-![sonar](./sonarqube.png)
+![sonar](./sonar/sonarqube.png)
 
 8. sonar-scanner
 ```url
 https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner/
 ```
 选择版本下载
-![scanner](./sonar-scanner.png)
+![scanner](./sonar/sonar-scanner.png)
 
 * 使用sonar-scanner命令行扫描代码
 ```bash
@@ -155,7 +155,31 @@ ERROR: Re-run SonarScanner using the -X switch to enable full debug logging.
 /usr/local/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner -Dsoanr.source=./ -Dsonar.projectname=linux-test -Dsonar.login=dbe6ce0f6af2d435caa8dda466759b5f9df9a79a -Dsonar.projectKey=linux-test -Dsonar.java.binaries=./target/
 ```
 最终成功运行
-![sonar](./result.png)
+![sonar](./sonar/result.png)
+
+9. jenkins集合sonar-scanner
+![jen](./sonar/jenkins-sonar-scanner.png)
+
+- 启动运行报错
+
+![fail](./sonar/scanner-fail.png)
+
+- 根据报错提示处理文件夹，这是因为上面步骤手动执行scanner生成的目录权限是root，所以需要删除
+```bash
+[root@jenkins mytest]# ll -a
+total 8
+drwxr-xr-x. 7 1000 1000  110 Dec 10 22:33 .
+drwxr-xr-x. 3 1000 1000   20 Dec 10 00:53 ..
+drwxr-xr-x. 2 1000 1000   50 Dec 10 02:27 docker
+drwxr-xr-x. 8 1000 1000  162 Dec 10 22:33 .git
+-rw-r--r--. 1 1000 1000   13 Dec 10 00:53 .gitignore
+-rw-r--r--. 1 1000 1000 1471 Dec 10 01:36 pom.xml
+drwxr-xr-x. 2 root root   48 Dec 10 21:50 .scannerwork
+drwxr-xr-x. 3 1000 1000   18 Dec 10 22:33 src
+drwxr-xr-x. 6 1000 1000  133 Dec 10 22:33 target
+[root@jenkins mytest]# rm -rf .scannerwork/
+```
+- 删除之后重新启动Jenkins任务，执行成功
 
 
 
