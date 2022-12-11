@@ -116,3 +116,46 @@ http://192.168.3.102:9000/projects
 mvn sonar:sonar
 ```
 ![sonar](./sonarqube.png)
+
+8. sonar-scanner
+```url
+https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner/
+```
+选择版本下载
+![scanner](./sonar-scanner.png)
+
+* 使用sonar-scanner命令行扫描代码
+```bash
+/usr/local/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner -Dsoanr.source=./ -Dsonar.projectname=linux-test
+
+INFO: Scanner configuration file: /usr/local/docker/jenkins_docker/data/sonar-scanner/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 4.6.1.2450
+INFO: Java 11.0.3 AdoptOpenJDK (64-bit)
+INFO: Linux 3.10.0-1127.el7.x86_64 amd64
+INFO: User cache: /root/.sonar/cache
+INFO: Scanner configuration file: /usr/local/docker/jenkins_docker/data/sonar-scanner/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: Analyzing on SonarQube server 8.9.6
+INFO: Default locale: "en_US", source code encoding: "UTF-8"
+INFO: Load global settings
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION FAILURE
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 1.251s
+INFO: Final Memory: 4M/17M
+INFO: ------------------------------------------------------------------------
+ERROR: Error during SonarScanner execution
+ERROR: Not authorized. Analyzing this project requires authentication. Please provide a user token in sonar.login or other credentials in sonar.login and sonar.password.
+ERROR:
+ERROR: Re-run SonarScanner using the -X switch to enable full debug logging.
+```
+报错，是因为账号授权的问题，sonar管理台生成账号授权码
+```bash
+/usr/local/docker/jenkins_docker/data/sonar-scanner/bin/sonar-scanner -Dsoanr.source=./ -Dsonar.projectname=linux-test -Dsonar.login=dbe6ce0f6af2d435caa8dda466759b5f9df9a79a -Dsonar.projectKey=linux-test -Dsonar.java.binaries=./target/
+```
+最终成功运行
+![sonar](./result.png)
+
+
+
