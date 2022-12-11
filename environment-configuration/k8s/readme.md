@@ -393,3 +393,64 @@ nginx-deployment   NodePort   10.96.157.70   <none>        8888:32312/TCP   7s
 
 http://192.168.3.201:32312/  访问当前地址，返回222说明跳转到Nginx服务的内部pod上
 ```
+
+9. ingress搭建
+```yaml
+[root@k8smaster ~]# cat nginx-deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: test
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: test
+  name: nginx-deployment
+  labels:
+    app: nginx-deployment
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 8888
+    targetPort: 80
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: test
+  name: nginx-ingress
+spec:
+  ingressClassName: ingress
+  rules:
+  - host: zfw.club.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-deployment
+            port:
+              number: 8888
+```
