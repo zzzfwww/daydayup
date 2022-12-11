@@ -89,3 +89,44 @@ bf880a2cedd0   goharbor/harbor-portal:v2.3.4        "nginx -g 'daemon of…"   6
 a47c8ea21cc3   goharbor/registry-photon:v2.3.4      "/home/harbor/entryp…"   6 minutes ago       Up 6 minutes (healthy)
 ```
 
+7. docker登录harbor用于推送镜像
+```text
+#修改/etc/docker/daemon.json
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"],
+  "insecure-registries": ["192.168.3.102:80"]
+}
+# 增加insecure-registries 为harbor地址
+
+#重启docker 
+systemctl restart docker
+
+# 如果服务没启动成功则到对应的harbor目录重启
+cd /usr/local/harbor
+
+docker-compose restart
+```
+docker登录harbor，并且推送镜像到harbor
+```bash
+[root@jenkins harbor]# docker login -u admin -p Harbor12345 192.168.3.102:80
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+[root@jenkins jenkins_docker]# docker push 192.168.3.102:80/repo/mytest:v2.0.0
+The push refers to repository [192.168.3.102:80/repo/mytest]
+f120937ae37e: Pushed
+50ecdabc71b7: Pushed
+3e9cda2eceec: Pushed
+5f70bf18a086: Pushed
+bb7b60f93aea: Pushed
+0ef3d186e2bd: Pushed
+1e0931f30489: Pushed
+fd97e4a10f39: Pushed
+v2.0.0: digest: sha256:1acfe357d669b75a00aa51d503d70210d41d3f4fe0725c6f264a18875d48a3ae size: 2828
+```
+
+
