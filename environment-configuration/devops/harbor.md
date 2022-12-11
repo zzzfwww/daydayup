@@ -9,8 +9,7 @@ https://objects.githubusercontent.com/github-production-release-asset-2e65be/506
 ```
 3. 下载完成之后scp到目标机器上
 ```bash
-scp harbor-offline-installer-v2.3.4.tgz root@192.168.3.102:h
-arbor.tgz
+scp harbor-offline-installer-v2.3.4.tgz root@192.168.3.102:harbor.tgz
 ```
 4. 解压压缩包到/usr/local下
 ```bash
