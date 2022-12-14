@@ -3,6 +3,7 @@ package com.example.demo.aop;
 import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+@Aspect
 @Component
 public class OperateAspect {
     /**
@@ -18,7 +20,7 @@ public class OperateAspect {
      * 横切逻辑
      * 植入
      */
-    @Pointcut("@annotation(aop.RecordOperate)")
+    @Pointcut("@annotation(com.example.demo.aop)")
     public void pointcut() {
     }
 

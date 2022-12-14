@@ -1,8 +1,10 @@
 package com.example.demo.aop;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
+@Component
 public class OrderService {
 
     @RecordOperate(desc = "保存订单", convert = SaveOrderConvert.class)
