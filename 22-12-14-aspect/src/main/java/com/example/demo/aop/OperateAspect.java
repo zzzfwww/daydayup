@@ -20,7 +20,7 @@ public class OperateAspect {
      * 横切逻辑
      * 植入
      */
-    @Pointcut("@annotation(com.example.demo.aop)")
+    @Pointcut("@annotation(com.example.demo.aop.RecordOperate)")
     public void pointcut() {
     }
 
