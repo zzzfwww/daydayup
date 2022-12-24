@@ -2,11 +2,11 @@
 
 ## nginx处理跨域配置
 
-* 前段页面通过axios请求后端，由于前段页面的地址和请求后台的地址不统一，所以出现跨域问题
+* 前端页面通过axios请求后端，由于前端页面的地址和请求后台的地址不统一，所以出现跨域问题
 
 * 跨域处理本质上需要header增加`Access-Control-Allow-Origin`,并且设置允许不同源访问
 
-* 设置之后，前段会试探性的进行OPTIONS请求后台，这时候也需要处理OPTIONS请求，直接返回200，要不然Nginx访问日志会报405错误，method not allow
+* 设置之后，前端会试探性的进行OPTIONS请求后台，这时候也需要处理OPTIONS请求，直接返回200，要不然Nginx访问日志会报405错误，method not allow
 
 * 最终Nginx配置文件如下：
 
