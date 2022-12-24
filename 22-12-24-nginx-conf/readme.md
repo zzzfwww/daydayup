@@ -6,7 +6,7 @@
 
 * 跨域处理本质上需要header增加`Access-Control-Allow-Origin`,并且设置允许不同源访问
 
-* 设置之后，前段会试探性的进行OPTHIONS请求后台，这时候也需要处理OPTHONS请求，直接返回200，要不然Nginx访问日志会报405错误，method not allow
+* 设置之后，前段会试探性的进行OPTIONS请求后台，这时候也需要处理OPTIONS请求，直接返回200，要不然Nginx访问日志会报405错误，method not allow
 
 * 最终Nginx配置文件如下：
 
