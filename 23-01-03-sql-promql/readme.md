@@ -59,3 +59,28 @@ or
 * topk(5, sum(http_request_totạl) by (statuscode, handler))取前N条时序
 * bottomk(3, sum(http_request_totạl) by (statuscode, handler))取后N条时序
 * 取当前数据的中位数guantile(0.5, http_request_totạl)
+
+内置函数
+* 一个指标的增长率 `increase`
+  * increate(http_request_total[1h]/3600)
+* `rate` rate(http_request_total[1h])
+* `irate` 瞬时增长率，取最后两个数据进行计算
+  * 不适合做需要长期趋势或者在告警规则中使用
+  * rate适合
+
+预测统计
+* `predict_linear` predict_linear(node_fliesystem_flies_free{mountpoint="/"}[1d],4*3600) < 0 根据一天的数据，预测4小时之后，磁盘分区的空间会不会小于0
+* `absent` 如果样本数据不为空则返回no data 如果为空则返回1
+
+去除小数点
+* `ceil` 四舍五入，向上取整 2.79 -> 3
+* `floor` 向下取 2.79->2
+
+`delta` 差值
+
+排序
+* `sort` 正序
+* `sort_desc` 倒序
+
+`lable_join`: 将数据中的一个或多个label的值赋值给一个label
+`label_replace`: 根据数据汇总的某个label值，进行正则匹配，然后赋值给新label并添加到数据中
