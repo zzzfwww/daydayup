@@ -84,3 +84,14 @@ or
 
 `lable_join`: 将数据中的一个或多个label的值赋值给一个label
 `label_replace`: 根据数据汇总的某个label值，进行正则匹配，然后赋值给新label并添加到数据中
+
+## 样例
+* graph查询node cpu时间源数据
+  
+![img](./resource/node_cpu.png)
+
+* 使用promQL计算cpu使用率
+```promQL
+(1-((sum(increase(node_cpu_seconds_total{mode="idle"}[1m])) by (instance)) /sum(increase(node_cpu_seconds_total[1m])) by (instance))) * 100
+```
+![img](./resource/cpu_use.png)
