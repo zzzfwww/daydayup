@@ -61,7 +61,7 @@ There is a screen on:
 ## 一般正式环境参数启动
 ```sh
 [root@prometheus ~]# cat /data/prometheus/up.sh
-/data/prometheus/prometheus --web.listen-address="Ø.0.0.Ø:9090" --web.read-timeout=5m --web.max-connections=10 --storage.tsdb.retention=15d --storage.tsdb.path="data/" --query.max-concurrency=20 --query.timeout=2m
+/data/prometheus/prometheus --web.listen-address="0.0.0.0:9090" --web.read-timeout=5m --web.max-connections=10 --storage.tsdb.retention=15d --storage.tsdb.path="data/" --query.max-concurrency=20 --query.timeout=2m
 
 # 一般使用daemonzie 启动
 
