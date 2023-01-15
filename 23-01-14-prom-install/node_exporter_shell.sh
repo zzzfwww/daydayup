@@ -3,7 +3,7 @@
 instance_name=`hostname -f |cut -d'.' -f1`
 
 if [ $instance_name == "localhost" ];then
-	echo "mush FQDN hostname"
+	echo "must FQDN hostname"
 	exit 1
 fi
 
