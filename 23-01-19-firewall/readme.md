@@ -25,7 +25,7 @@ telnet: Unable to connect to remote host
 
     3. 在命令行中输入`systemctl stop firewalld.service`命令，进行关闭防火墙。
 
-    4. 然后再使用命令`systemctl status firewalld.service`，在下方出现`disavtive（dead）`，这权样就说明防火墙已经关闭。
+    4. 然后再使用命令`systemctl status firewalld.service`，在下方出现`disavtive（dead）`，这样就说明防火墙已经关闭。
 
     5. 再在命令行中输入命令`systemctl disable firewalld.service` 命令，即可永久关闭防火墙。
 
