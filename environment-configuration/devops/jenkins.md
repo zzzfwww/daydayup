@@ -169,3 +169,22 @@ echo $project_name
 
 ./deploy.sh 192.168.3.102:80 repo mytest v3.0.0 8081
 ```
+
+## 删除无效的images
+```shell
+[root@jenkins jenkins_docker]# docker images
+REPOSITORY                       TAG               IMAGE ID       CREATED         SIZE
+golang                           1.18.10           c37a56a6d654   7 days ago      965MB
+192.168.3.102:80/repo/pipeline   v3.0.0            7ea40d6e08ff   5 weeks ago     833MB
+<none>                           <none>            dbceffc14669   5 weeks ago     833MB
+<none>                           <none>            969618824db2   5 weeks ago     833MB
+192.168.3.102:80/repo/mytest     v3.0.0            d0d7a432c6b1   5 weeks ago     833MB
+postgres                         latest            4c6b3cc10e6b   6 weeks ago     379MB
+sonarqube                        8.9.6-community   3f623568fa64   13 months ago   497MB
+jenkins/jenkins                  2.319.1-lts       2a4bbe50c40b   13 months ago   441MB
+goharbor/harbor-exporter         v2.3.4            41f7fb260d0d   14 months ago   81.1MB
+goharbor/chartmuseum-photon      v2.3.4            f460981da720   14 months ago   179MB
+
+```
+
+* 使用命令 `docker image prune -f`
