@@ -10,11 +10,14 @@
 ## 耗子博客
 [耗子](https://coolshell.cn/)
 
-## 苏三说技术
-[苏三](https://github.com/dvsusan/susanSayJava)
+## 阮一峰
+[阮一峰](http://www.ruanyifeng.com/)
+
+* `set` 命令使用 [link](http://www.ruanyifeng.com/blog/2017/11/bash-set.html)
 
 ## Kavin 
 
 [Kavin 知乎](https://www.zhihu.com/people/kevwan)
 
 [Kavin Github](https://github.com/kevwan)
+
