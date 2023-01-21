@@ -46,3 +46,7 @@ source ~/.zshrc
 ```text
 ZSH_THEME="agnoster"
 ```
+
+--------
+
+zsh [theme](https://travis.media/top-12-oh-my-zsh-themes-for-productive-developers/)
