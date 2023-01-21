@@ -21,6 +21,9 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 sh -c "$(wget -O- https://gitee.com/pocmon/mirrors/raw/master/tools/install.sh)
 ```
 
+## use plugin list
+* `plugins=(git extract z sublime zsh-autosuggestions)` 
+
 ## plugin zsh-autosuggestions
 * `oh-my-zsh plugin ‘zsh-autosuggestions’ not found`
 ```shell
@@ -28,3 +31,4 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/p
 source ~/.zshrc
 ```
 * slove it
+
