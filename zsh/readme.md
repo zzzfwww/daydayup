@@ -32,3 +32,17 @@ source ~/.zshrc
 ```
 * slove it
 
+## Theme Agnoster
+
+* To use the agnoster theme you have to install some fonts. Otherwise you will see some question marks where symbols are supposed to go. Here are the steps to install:
+
+* git clone https://github.com/powerline/fonts 
+* download and unzip [zip](./fonts.zip)
+* cd fonts
+* ./install.sh from terminal / command line
+* Open iTerm2->Preferences->Profiles->Change Font-> 12pt Meslo LG S DZ Regular for Powerline
+* After doing that you should see this. It’s a pretty popular look out there:
+
+```text
+ZSH_THEME="agnoster"
+```
