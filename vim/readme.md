@@ -12,6 +12,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 set autoread
+set number
+set backspace=2
 colorscheme Tomorrow-Night-Eighties
 nmap ;ll :NERDTreeToggle /data<CR>
 nmap ;lw :NERDTree       /data<CR>
