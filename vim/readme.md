@@ -2,7 +2,8 @@
 
 ## pure nerdtree 
 * use `vim.tar.gz`
-* cd $HOME && tar -zxvf vim.tar.gz
+* use `cd $HOME && tar -zxvf vim.tar.gz`
+* `.vimrc` config detail
 ```vim
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -38,4 +39,4 @@ let NERDTreeDirArrows=0
 
 ## more pulgin
 
-* use `vim_runtimego.tar`
+* use `vim_run.tar.gz`
