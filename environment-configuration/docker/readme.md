@@ -96,5 +96,5 @@ systemctl enable docker
 systemctl restart docker
 ```
 
-* docker cmd 
+## docker 生命周期
 ![img](./detail.png)
