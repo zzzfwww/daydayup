@@ -98,3 +98,11 @@ systemctl restart docker
 
 ## docker 生命周期
 ![img](./detail.png)
+
+## docker命令
+```shell
+# 运行容器，且进入容器内
+# 参数 解释 -i 交互式命令操作 -t 开启一个终端 19c51d4327cf 镜像id  bash 进入容器内的交互式命令解释器
+
+docker run -it 19c51d4327cf bash
+```
