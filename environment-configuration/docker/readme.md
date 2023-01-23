@@ -95,3 +95,6 @@ systemctl daemon-reload
 systemctl enable docker
 systemctl restart docker
 ```
+
+* docker cmd 
+![img](./detail.png)
