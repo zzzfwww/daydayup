@@ -58,11 +58,11 @@ lscpu
 ```
 
 > **kubelet使用的IP地址**
-
+>
 > ip route show 命令中，可以知道机器的默认网卡，通常是 eth0或者ens33，如 default via 172.21.0.23 dev eth0
-
+>
 > ip address 命令中，可显示默认网卡的 IP 地址，Kubernetes 将使用此 IP 地址与集群内的其他节点通信，如 172.17.216.80
-
+>
 > 所有节点上 Kubernetes 所使用的 IP 地址必须可以互通（无需 NAT 映射、无安全组或防火墙隔离）
 
 # 安装软件
@@ -74,13 +74,13 @@ kubectl / kubeadm / kubelet
 
 docker hub 镜像请根据自己网络的情况任选一个
 
-第四行为腾讯云 docker hub 镜像
-
-第六行为DaoCloud docker hub 镜像
-
-第八行为华为云 docker hub 镜像
-
-第十行为阿里云 docker hub 镜像
+> 第四行为腾讯云 docker hub 镜像
+> 
+> 第六行为DaoCloud docker hub 镜像
+> 
+> 第八行为华为云 docker hub 镜像
+> 
+> 第十行为阿里云 docker hub 镜像
 ```bash
 # 在 master 节点和 worker 节点都要执行
 # 最后一个参数 1.19.5 用于指定 kubenetes 版本，支持所有 1.19.x 版本的安装
