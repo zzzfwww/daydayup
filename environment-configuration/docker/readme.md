@@ -106,3 +106,6 @@ systemctl restart docker
 
 docker run -it 19c51d4327cf bash
 ```
+
+## docker运行原理
+![img](./docker.png)
