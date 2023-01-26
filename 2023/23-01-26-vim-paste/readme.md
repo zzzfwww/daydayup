@@ -17,3 +17,7 @@ To avoid this from happening, you can use Vim’s paste mode. When you enable pa
 * Type “i” to enter paste mode. Notice the “– INSERT (paste) –” at the bottom of the Vim window.
 * Paste your Python code into Vim. Indentation should be as in the original
 * To exit paste mode, type “:set nopaste”. Notice the “– INSERT –” at the bottom of the Vim window. This means you are back to normal insert mode.
+  
+----- 
+
+from [link](https://techexplorations.com/blog/kicad/blog-how-to-copy-text-into-vim/)
