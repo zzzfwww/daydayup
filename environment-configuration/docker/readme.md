@@ -109,3 +109,9 @@ docker run -it 19c51d4327cf bash
 
 ## docker镜像原理
 ![img](./docker.png)
+
+## Dockerfile
+
+* CMD 和 ENTRYPOINT 差异
+  * 场景使用举例[link](https://yeasy.gitbook.io/docker_practice/image/dockerfile/entrypoint)
+
