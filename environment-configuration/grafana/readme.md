@@ -1,3 +1,19 @@
+# docker安装grafana
+
+## 先启动一个grafana
+```shell
+docker run -d --name grafana \
+-p 3000:3000 \
+grafana/grafana:latest
+```
+## 复制启动成功的grafana信息
+```shell
+docker cp grafana:/etc/grafana/ .
+docker cp grafana:/var/lib/grafana .
+```
+
+
+
 # grafana 开启免密登录获取dashboard
 
 ## 第一步grafana增加一个org
@@ -36,8 +52,8 @@ services:
       ports:
          - "3000:3000"
       volumes:
-         - ./grafana-conf/:/etc/grafana/
-         - ./grafana-lib/:/var/lib/grafana/
+         - ./grafana/:/etc/grafana/
+         - ./grafana/:/var/lib/grafana/
       deploy:
          resources:
             limits:
