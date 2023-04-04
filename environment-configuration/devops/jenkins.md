@@ -53,7 +53,17 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 ```url
 https://plugins.jenkins.io/
 ```
+## Jenkins插件下载地址修改为国内
+- hudson.model.UpdateCenter.xml
+```yaml
+<?xml version='1.1' encoding='UTF-8'?>
+<sites>
+  <site>
+    <id>default</id>
+    <url>http://mirror.esuni.jp/jenkins/updates/update-center.json</url>
+  </site>
 
+```
 ## Jenkins配置简单项目
 1. 配置git
 ![git](./jenkins/git.png)
