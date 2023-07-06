@@ -12,6 +12,7 @@ yum makecache
 
 yum install -y bash-completion vim lrzsz wgt expect net-tools nc nmap tree dos2unix htop iftop iotop unzip telnet sl psmisc nethogs glances bc ntpdate openIdap-devel
 ```
+* 参考：https://developer.aliyun.com/mirror/centos?spm=a2c6h.13651102.0.0.3e221b11v5kzkv
 * 安装docker
 * 开启Linux内核的流量转发
 ```conf
