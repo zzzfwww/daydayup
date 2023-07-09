@@ -42,10 +42,10 @@ yum list docker-ce --showduplicates |sort -r
 ```
 * 配置yum源 docker-ce
 ```shell
-curl -o /etc/yum.repos.d/docker-ce.repo http:mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+curl -o /etc/yum.repos.d/docker-ce.repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 * 更新yum缓存：`yum clean && yum makecache`
-* yum -y install docker-ce:20.10.21
+* yum -y install docker-ce
 * 安装完成之后 `docker version`查看版本
 ```text
 [~]$ docker version
