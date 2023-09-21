@@ -52,4 +52,36 @@ https://github.com/kubesphere/kubekey#requirements-and-recommendations
 [root@kube ~]# yum -y install conntrack socat
 ```
 
-## 4. wait install success...
+## 4. wait installation complete...
+```txt
+04:07:54 EDT [DeployKubeSphereModule] Generate KubeSphere ks-installer crd manifests
+04:07:56 EDT success: [kube]
+04:07:56 EDT [DeployKubeSphereModule] Apply ks-installer
+04:07:57 EDT stdout: [kube]
+namespace/kubesphere-system created
+serviceaccount/ks-installer created
+customresourcedefinition.apiextensions.k8s.io/clusterconfigurations.installer.kubesphere.io created
+clusterrole.rbac.authorization.k8s.io/ks-installer created
+clusterrolebinding.rbac.authorization.k8s.io/ks-installer created
+deployment.apps/ks-installer created
+04:07:57 EDT success: [kube]
+04:07:57 EDT [DeployKubeSphereModule] Add config to ks-installer manifests
+04:07:57 EDT success: [kube]
+04:07:57 EDT [DeployKubeSphereModule] Create the kubesphere namespace
+04:08:00 EDT success: [kube]
+04:08:00 EDT [DeployKubeSphereModule] Setup ks-installer config
+04:08:02 EDT stdout: [kube]
+secret/kube-etcd-client-certs created
+04:08:05 EDT success: [kube]
+04:08:05 EDT [DeployKubeSphereModule] Apply ks-installer
+04:08:14 EDT stdout: [kube]
+namespace/kubesphere-system unchanged
+serviceaccount/ks-installer unchanged
+customresourcedefinition.apiextensions.k8s.io/clusterconfigurations.installer.kubesphere.io unchanged
+clusterrole.rbac.authorization.k8s.io/ks-installer unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ks-installer unchanged
+deployment.apps/ks-installer unchanged
+clusterconfiguration.installer.kubesphere.io/ks-installer created
+04:08:14 EDT success: [kube]
+Please wait for the installation to complete:     >>---> 
+```
