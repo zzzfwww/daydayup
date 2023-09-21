@@ -85,3 +85,9 @@ clusterconfiguration.installer.kubesphere.io/ks-installer created
 04:08:14 EDT success: [kube]
 Please wait for the installation to complete:     >>---> 
 ```
+* 查看k8s状态
+```bash
+[root@kube ~]# kubectl version
+Client Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.10", GitCommit:"7e54d50d3012cf3389e43b096ba35300f36e0817", GitTreeState:"clean", BuildDate:"2022-08-17T18:32:54Z", GoVersion:"go1.17.13", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.10", GitCommit:"7e54d50d3012cf3389e43b096ba35300f36e0817", GitTreeState:"clean", BuildDate:"2022-08-17T18:26:59Z", GoVersion:"go1.17.13", Compiler:"gc", Platform:"linux/amd64"}
+```
